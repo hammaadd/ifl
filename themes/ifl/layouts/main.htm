@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% partial "meta" %}
+	<title>{{this.page.description}}</title>
+
+	{% partial 'head_links' %}
+    {% placeholder extralinks %}
+</head>
+<body>
+{% partial "header" %}
+{% page %}
+{% partial "footer" %}
+</body>
+</html>
