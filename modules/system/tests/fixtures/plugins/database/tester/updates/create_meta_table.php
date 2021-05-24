@@ -9,7 +9,6 @@ class CreateMetaTable extends Migration
     public function up()
     {
         Schema::create('database_tester_meta', function ($table) {
-            $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->integer('taggable_id')->unsigned()->index()->nullable();
             $table->string('taggable_type')->nullable();

@@ -8,7 +8,6 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('database_tester_posts', function ($table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('title')->nullable();
             $table->string('slug')->nullable()->index();
@@ -23,7 +22,6 @@ class CreatePostsTable extends Migration
         });
 
         Schema::create('database_tester_categories_posts', function ($table) {
-            $table->engine = 'InnoDB';
             $table->integer('category_id')->unsigned();
             $table->integer('post_id')->unsigned();
             $table->primary(['category_id', 'post_id']);

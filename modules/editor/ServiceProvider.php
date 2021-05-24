@@ -7,7 +7,6 @@ use BackendMenu;
 use BackendAuth;
 use Backend\Models\UserRole;
 use October\Rain\Support\ModuleServiceProvider;
-use Illuminate\Support\Facades\Schema;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -37,7 +36,6 @@ class ServiceProvider extends ModuleServiceProvider
     public function boot()
     {
         parent::boot('editor');
-        Schema::defaultStringLength(191);
     }
 
     /*

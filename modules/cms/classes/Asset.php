@@ -11,7 +11,7 @@ use ValidationException;
 use DirectoryIterator;
 
 /**
- * The CMS theme asset file class.
+ * Asset for CMS asset files
  *
  * @package october\cms
  * @author Alexey Bobkov, Samuel Georges
@@ -24,12 +24,12 @@ class Asset extends Extendable
     protected $theme;
 
     /**
-     * @var string The container name inside the theme.
+     * @var string dirName for the container name inside the theme
      */
     protected $dirName = 'assets';
 
     /**
-     * @var string Specifies the file name corresponding the CMS object.
+     * @var string fileName specifies the file name corresponding the CMS object
      */
     public $fileName;
 
@@ -49,7 +49,7 @@ class Asset extends Extendable
     public $content;
 
     /**
-     * @var array The attributes that are mass assignable.
+     * @var array fillable attributes that are mass assignable
      */
     protected $fillable = [
         'fileName',
@@ -57,18 +57,17 @@ class Asset extends Extendable
     ];
 
     /**
-     * @var array Allowable file extensions.
+     * @var array allowedExtensions for template files
      */
     protected $allowedExtensions = [];
 
     /**
-     * @var bool Indicates if the model exists.
+     * @var bool exists indicates if the model exists.
      */
     public $exists = false;
 
     /**
-     * Creates an instance of the object and associates it with a CMS theme.
-     * @param \Cms\Classes\Theme $theme Specifies the theme the object belongs to.
+     * __construct creates an instance of the object and associates it with a CMS theme
      */
     public function __construct(Theme $theme)
     {
@@ -424,15 +423,15 @@ class Asset extends Extendable
     }
 
     /**
-     * Returns a list of editable asset extensions.
-     * The list can be overridden with the cms.editableAssetTypes configuration option.
+     * getEditableExtensions returns a list of editable asset extensions
+     * The list can be overridden with the cms.editable_asset_types configuration option.
      * @return array
      */
     public static function getEditableExtensions()
     {
         $defaultTypes =  ['css', 'js', 'less', 'sass', 'scss'];
 
-        $configTypes = Config::get('cms.editableAssetTypes');
+        $configTypes = Config::get('cms.editable_asset_types');
         if (!$configTypes) {
             return $defaultTypes;
         }

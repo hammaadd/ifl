@@ -8,7 +8,6 @@ class DbBackendAccessLog extends Migration
     public function up()
     {
         Schema::create('backend_access_log', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('ip_address')->nullable();

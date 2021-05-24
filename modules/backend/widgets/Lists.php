@@ -1,6 +1,7 @@
 <?php namespace Backend\Widgets;
 
 use Db;
+use Str;
 use Html;
 use Lang;
 use Backend;
@@ -250,7 +251,7 @@ class Lists extends WidgetBase
     }
 
     /**
-     * Prepares the list data
+     * prepareVars for display
      */
     public function prepareVars()
     {
@@ -1116,7 +1117,9 @@ class Lists extends WidgetBase
             }
             // Load the value from the relationship counter if useRelationCount is specified
             elseif ($column->relation && @$column->config['useRelationCount']) {
-                $value = $record->{"{$column->relation}_count"};
+                // Laravel converts count columns to snake case
+                $countColumnName = Str::snake($column->relation) . '_count';
+                $value = $record->{$countColumnName};
             }
             else {
                 $value = $record->{$columnName};

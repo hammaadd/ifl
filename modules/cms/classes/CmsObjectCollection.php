@@ -3,7 +3,7 @@
 use October\Rain\Support\Collection as CollectionBase;
 
 /**
- * This class represents a collection of Cms Objects.
+ * CmsObjectCollection represents a collection of Cms Objects
  *
  * @package october\cms
  * @author Alexey Bobkov, Samuel Georges
@@ -11,9 +11,9 @@ use October\Rain\Support\Collection as CollectionBase;
 class CmsObjectCollection extends CollectionBase
 {
     /**
-     * Returns objects that use the supplied component.
+     * withComponent returns objects that use the supplied component
      * @param  string|array $components
-     * @param null|callback $callback
+     * @param null|callable $callback
      * @return static
      */
     public function withComponent($components, $callback = null)

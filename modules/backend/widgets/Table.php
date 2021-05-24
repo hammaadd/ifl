@@ -116,7 +116,7 @@ class Table extends WidgetBase
     }
 
     /**
-     * Prepares the view data
+     * prepareVars for display
      */
     public function prepareVars()
     {

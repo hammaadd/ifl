@@ -139,13 +139,18 @@ class Controller extends Extendable
          */
         $this->user = BackendAuth::getUser();
 
-        parent::__construct();
+        /*
+         * No booting behaviors for undesirables
+         */
+        if ($this->user || $this->isPublicAction($this->action)) {
+            parent::__construct();
+        }
 
         $this->registerVueComponent(\Backend\VueComponents\Modal::class);
     }
 
     /**
-     * Execute the controller action.
+     * run executes the controller action
      * @param string $action The action name.
      * @param array $params Routing parameters to pass to the action.
      * @return mixed The action result.
@@ -172,14 +177,9 @@ class Controller extends Extendable
         }
 
         /*
-         * Determine if this request is a public action.
-         */
-        $isPublicAction = in_array($action, $this->publicActions);
-
-        /*
          * Check that user is logged in and has permission to view this page
          */
-        if (!$isPublicAction) {
+        if (!$this->isPublicAction($action)) {
             /*
              * Not logged in, redirect to login screen or show ajax error.
              */
@@ -196,6 +196,11 @@ class Controller extends Extendable
                 return Response::make(View::make('backend::access_denied'), 403);
             }
         }
+
+        /*
+         * Logic hook for all actions
+         */
+        $this->beforeDisplay();
 
         /**
          * @event backend.page.beforeDisplay
@@ -235,11 +240,7 @@ class Controller extends Extendable
         /*
          * Execute postback handler
          */
-        elseif (
-            ($handler = post('_handler')) &&
-            ($handlerResponse = $this->runAjaxHandler($handler)) &&
-            $handlerResponse !== true
-        ) {
+        elseif ($handlerResponse = $this->execPostbackHandler()) {
             $result = $handlerResponse;
         }
         /*
@@ -344,6 +345,14 @@ class Controller extends Extendable
     }
 
     /**
+     * beforeDisplay is a method to override in your controller as a way to execute logic before
+     * each action executes. It is preferred over placing logic in the constructor
+     */
+    public function beforeDisplay()
+    {
+    }
+
+    /**
      * This method is used internally.
      * Invokes the controller action and loads the corresponding view.
      * @param string $actionName Specifies a action name to execute.
@@ -404,8 +413,8 @@ class Controller extends Extendable
     }
 
     /**
-     * This method is used internally.
-     * Invokes a controller event handler and loads the supplied partials.
+     * execAjaxHandlers is used internally and unvokes a controller event handler and
+     * loads the supplied partials.
      */
     protected function execAjaxHandlers()
     {
@@ -506,7 +515,30 @@ class Controller extends Extendable
     }
 
     /**
-     * Tries to find and run an AJAX handler in the page action.
+     * execPostbackHandler is used internally to execute a postback version of an
+     * AJAX handler.
+     */
+    protected function execPostbackHandler()
+    {
+        if (Request::method() !== 'POST') {
+            return null;
+        }
+
+        $handler = post('_handler');
+        if (!$handler) {
+            return null;
+        }
+
+        $handlerResponse = $this->runAjaxHandler($handler);
+        if ($handlerResponse && $handlerResponse !== true) {
+            return $handlerResponse;
+        }
+
+        return null;
+    }
+
+    /**
+     * runAjaxHandler tries to find and run an AJAX handler in the page action.
      * The method stops as soon as the handler is found.
      * @return boolean Returns true if the handler was found. Returns false otherwise.
      */
@@ -636,11 +668,23 @@ class Controller extends Extendable
     }
 
     /**
-     * Returns the controllers public actions.
+     * getPublicActions returns the controllers public actions
      */
     public function getPublicActions()
     {
         return $this->publicActions;
+    }
+
+    /**
+     * isPublicAction returns true if the current action is public
+     */
+    public function isPublicAction(?string $action): bool
+    {
+        if (!$action) {
+            return false;
+        }
+
+        return in_array($action, $this->publicActions);
     }
 
     /**

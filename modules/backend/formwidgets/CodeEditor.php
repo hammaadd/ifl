@@ -4,8 +4,7 @@ use Backend\Models\Preference as BackendPreference;
 use Backend\Classes\FormWidgetBase;
 
 /**
- * Code Editor
- * Renders a code editor field.
+ * CodeEditor renders a field for editing code
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -153,7 +152,7 @@ class CodeEditor extends FormWidgetBase
     }
 
     /**
-     * Prepares the widget data
+     * prepareVars for display
      */
     public function prepareVars()
     {

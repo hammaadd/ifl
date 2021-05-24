@@ -8,7 +8,6 @@ class DbSystemSettings extends Migration
     public function up()
     {
         Schema::create('system_settings', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('item')->nullable()->index();
             $table->mediumtext('value')->nullable();

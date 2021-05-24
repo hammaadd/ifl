@@ -8,7 +8,6 @@ class DbSystemRequestLogs extends Migration
     public function up()
     {
         Schema::create('system_request_logs', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('status_code')->nullable();
             $table->string('url')->nullable();

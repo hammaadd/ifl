@@ -332,7 +332,7 @@ class ResizeImages
         $resourcesFolder .= '/resize';
 
         if (
-            Config::get('cms.storage.media.disk') === 'local' &&
+            Config::get('system.storage.media.disk') === 'local' &&
             Config::get('system.relative_links') === true
         ) {
             return $resourcesFolder;

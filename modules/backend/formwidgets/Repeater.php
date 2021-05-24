@@ -140,7 +140,7 @@ class Repeater extends FormWidgetBase
     }
 
     /**
-     * prepareVars prepares the form widget view data
+     * prepareVars for display
      */
     public function prepareVars()
     {

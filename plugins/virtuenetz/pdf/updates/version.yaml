@@ -1,0 +1,8 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table virtuenetz_pdf_pdf'
+    - builder_table_create_virtuenetz_pdf_pdf.php
+1.0.3:
+    - 'Updated table virtuenetz_pdf_pdf'
+    - builder_table_update_virtuenetz_pdf_pdf.php

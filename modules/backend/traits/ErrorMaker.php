@@ -3,8 +3,7 @@
 use System\Classes\ErrorHandler;
 
 /**
- * Error Maker Trait
- * Adds exception based methods to a class, goes well with `System\Traits\ViewMaker`.
+ * ErrorMaker Trait adds exception based methods to a class, goes well with `System\Traits\ViewMaker`
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -25,7 +24,7 @@ trait ErrorMaker
     }
 
     /**
-     * @return string The fatal error message
+     * getFatalError returns error message
      */
     public function getFatalError()
     {

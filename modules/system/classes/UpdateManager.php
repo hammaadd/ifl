@@ -264,6 +264,7 @@ class UpdateManager
             $info['old_version'] = $versions[$code] ?? false;
             $info['icon'] = $icons[$code] ?? false;
             $plugins[$code] = $info;
+            $updateCount++;
         }
         $result['plugins'] = $plugins;
 
@@ -278,12 +279,12 @@ class UpdateManager
         //         }
         //     }
         //     $result['themes'] = $themes;
+        //     $updateCount++;
         // }
 
         /*
          * Recalculate the update counter
          */
-        $updateCount += count($themes);
         $result['hasUpdates'] = $updateCount > 0;
         $result['update'] = $updateCount;
         Parameter::set('system::update.count', $updateCount);

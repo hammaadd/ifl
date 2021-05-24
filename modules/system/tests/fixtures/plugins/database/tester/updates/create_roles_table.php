@@ -5,11 +5,9 @@ use October\Rain\Database\Updates\Migration;
 
 class CreateRolesTable extends Migration
 {
-
     public function up()
     {
         Schema::create('database_tester_roles', function ($table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
@@ -17,7 +15,6 @@ class CreateRolesTable extends Migration
         });
 
         Schema::create('database_tester_authors_roles', function ($table) {
-            $table->engine = 'InnoDB';
             $table->integer('author_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->primary(['author_id', 'role_id']);

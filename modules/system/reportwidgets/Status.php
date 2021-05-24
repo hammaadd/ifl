@@ -57,10 +57,8 @@ class Status extends ReportWidgetBase
 
     protected function loadData()
     {
-        $manager = UpdateManager::instance();
-
         $this->vars['canUpdate'] = BackendAuth::getUser()->hasAccess('system.manage_updates');
-        $this->vars['updates'] = $manager->check();
+        $this->vars['updates'] = UpdateManager::instance()->check();
         $this->vars['warnings'] = $this->getSystemWarnings();
         $this->vars['coreBuild'] = Parameter::get('system::core.build');
 

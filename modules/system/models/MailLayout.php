@@ -8,7 +8,7 @@ use ApplicationException;
 use File as FileHelper;
 
 /**
- * Mail layout
+ * MailLayout
  *
  * @package october\system
  * @author Alexey Bobkov, Samuel Georges
@@ -36,13 +36,13 @@ class MailLayout extends Model
      * @var array Validation rules
      */
     public $rules = [
-        'code'                  => 'required|unique:system_mail_layouts',
-        'name'                  => 'required',
-        'content_html'          => 'required',
+        'code' => 'required|unique:system_mail_layouts',
+        'name' => 'required',
+        'content_html' => 'required',
     ];
 
     /**
-     * @var array Options array
+     * @var array jsonable attribute names that are json encoded and decoded from the database
      */
     protected $jsonable = [
         'options'

@@ -1,6 +1,5 @@
 <?php namespace Backend\FormWidgets;
 
-use Config;
 use Carbon\Carbon;
 use Backend\Classes\FormField;
 use Backend\Classes\FormWidgetBase;
@@ -8,8 +7,7 @@ use System\Helpers\DateTime as DateTimeHelper;
 use Backend\Models\Preference as BackendPreference;
 
 /**
- * Date picker
- * Renders a date picker field.
+ * DatePicker renders a date picker field
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -21,46 +19,46 @@ class DatePicker extends FormWidgetBase
     //
 
     /**
-     * @var bool Display mode: datetime, date, time.
+     * @var bool mode for display. Values: datetime, date, time
      */
     public $mode = 'datetime';
 
     /**
-     * @var string Provide an explicit date display format.
+     * @var string format provides an explicit date display format
      */
     public $format;
 
     /**
-     * @var string the minimum/earliest date that can be selected.
+     * @var string minDate the minimum/earliest date that can be selected.
      * eg: 2000-01-01
      */
     public $minDate;
 
     /**
-     * @var string the maximum/latest date that can be selected.
+     * @var string maxDate the maximum/latest date that can be selected.
      * eg: 2020-12-31
      */
     public $maxDate;
 
     /**
-     * @var string number of years either side or array of upper/lower range
+     * @var string yearRange number of years either side or array of upper/lower range
      * eg: 10 or [1900,1999]
      */
     public $yearRange;
 
     /**
-     * @var int first day of the week
+     * @var int firstDay of the week
      * eg: 0 (Sunday), 1 (Monday), 2 (Tuesday), etc.
      */
     public $firstDay = 0;
 
     /**
-     * @var bool show week numbers at head of row
+     * @var bool showWeekNumber at head of row
      */
     public $showWeekNumber = false;
 
     /**
-     * @var bool change datetime exactly as is in database
+     * @var bool ignoreTimezone will not apply timezone modifications
      */
     public $ignoreTimezone = false;
 
@@ -91,6 +89,10 @@ class DatePicker extends FormWidgetBase
 
         $this->mode = strtolower($this->mode);
 
+        if ($this->mode === 'time' || $this->mode === 'date') {
+            $this->ignoreTimezone = true;
+        }
+
         if ($this->minDate !== null) {
             $this->minDate = is_int($this->minDate)
                 ? Carbon::createFromTimestamp($this->minDate)
@@ -114,21 +116,13 @@ class DatePicker extends FormWidgetBase
     }
 
     /**
-     * Prepares the list data
+     * prepareVars for display
      */
     public function prepareVars()
     {
         if ($value = $this->getLoadValue()) {
             $value = DateTimeHelper::makeCarbon($value, false);
-
-            if ($this->mode === 'date' && !$this->ignoreTimezone) {
-                $backendTimeZone = BackendPreference::get('timezone');
-                $value->setTimezone($backendTimeZone);
-                $value->setTime(0, 0, 0);
-                $value->setTimezone(Config::get('app.timezone'));
-            }
-
-            $value = $value->toDateTimeString();
+            $value = $value instanceof Carbon ? $value->toDateTimeString() : $value;
         }
 
         $this->vars['name'] = $this->getFieldName();
@@ -163,7 +157,7 @@ class DatePicker extends FormWidgetBase
     }
 
     /**
-     * Convert PHP format to JS format
+     * getDateFormatMoment converts PHP format to JS format
      */
     protected function getDateFormatMoment()
     {
@@ -173,7 +167,7 @@ class DatePicker extends FormWidgetBase
     }
 
     /*
-     * Display alias, used by preview mode
+     * getDateFormatAlias displays alias, used by preview mode
      */
     protected function getDateFormatAlias()
     {

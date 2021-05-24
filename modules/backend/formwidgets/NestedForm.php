@@ -72,7 +72,7 @@ class NestedForm extends FormWidgetBase
     }
 
     /**
-     * prepareVars
+     * prepareVars for display
      */
     public function prepareVars()
     {

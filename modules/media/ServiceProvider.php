@@ -9,7 +9,6 @@ use System\Classes\CombineAssets;
 use System\Classes\MarkupManager;
 use Backend\Classes\WidgetManager;
 use October\Rain\Support\ModuleServiceProvider;
-use Illuminate\Support\Facades\Schema;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -44,7 +43,6 @@ class ServiceProvider extends ModuleServiceProvider
     public function boot()
     {
         parent::boot('media');
-        Schema::defaultStringLength(191);
     }
 
     /**

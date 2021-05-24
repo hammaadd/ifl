@@ -108,9 +108,9 @@ class Extension extends TwigExtension
      * @param array $parameters A optional list of parameters to pass to the content.
      * @return string Returns the file contents.
      */
-    public function contentFunction($name, $parameters = [])
+    public function contentFunction($name, $parameters = [], $throwException = false)
     {
-        return $this->controller->renderContent($name, $parameters);
+        return $this->controller->renderContent($name, $parameters, $throwException);
     }
 
     /**

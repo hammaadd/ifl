@@ -104,7 +104,6 @@ class ServiceProvider extends ModuleServiceProvider
         PluginManager::instance()->bootAll();
 
         parent::boot('system');
-        Schema::defaultStringLength(191);
     }
 
     /**

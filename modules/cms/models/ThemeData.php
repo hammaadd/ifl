@@ -34,7 +34,7 @@ class ThemeData extends Model
     protected $fillable = [];
 
     /**
-     * @var array List of attribute names which are json encoded and decoded from the database.
+     * @var array jsonable attribute names that are json encoded and decoded from the database
      */
     protected $jsonable = ['data'];
 

@@ -85,7 +85,7 @@ class Relation extends FormWidgetBase
     }
 
     /**
-     * Prepares the view data
+     * prepareVars for display
      */
     public function prepareVars()
     {

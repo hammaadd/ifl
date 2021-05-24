@@ -36,17 +36,17 @@ class SettingsManager
     const CATEGORY_NOTIFICATIONS = 'system::lang.system.categories.notifications';
 
     /**
-     * @var array Cache of registration callbacks.
+     * @var array callbacks for registration
      */
     protected $callbacks = [];
 
     /**
-     * @var array List of registered items.
+     * @var array items registered
      */
     protected $items;
 
     /**
-     * @var array Grouped collection of all items, by category.
+     * @var array groupedItems by category
      */
     protected $groupedItems;
 
@@ -56,12 +56,12 @@ class SettingsManager
     protected $contextOwner;
 
     /**
-     * @var string Active item code.
+     * @var string contextItemCode for active item
      */
     protected $contextItemCode;
 
     /**
-     * @var array Settings item defaults.
+     * @var array itemDefaults for settings
      */
     protected static $itemDefaults = [
         'code'        => null,
@@ -82,13 +82,16 @@ class SettingsManager
     protected $pluginManager;
 
     /**
-     * Initialize this singleton.
+     * init initializes this singleton
      */
     protected function init()
     {
         $this->pluginManager = PluginManager::instance();
     }
 
+    /**
+     * loadItems
+     */
     protected function loadItems()
     {
         /*
@@ -144,7 +147,13 @@ class SettingsManager
          */
         $catItems = [];
         foreach ($this->items as $code => $item) {
-            $category = $item->category ?: self::CATEGORY_MISC;
+            // For YAML, eg: CATEGORY_SYSTEM
+            if (defined("static::{$item->category}")) {
+                $category = constant("static::{$item->category}");
+            }
+            else {
+                $category = $item->category ?: self::CATEGORY_MISC;
+            }
             if (!isset($catItems[$category])) {
                 $catItems[$category] = [];
             }
@@ -318,7 +327,7 @@ class SettingsManager
     }
 
     /**
-     * Sets the navigation context.
+     * setContext sets the navigation context
      * @param string $owner Specifies the setting items owner plugin or module in the format Vendor.Module.
      * @param string $code Specifies the settings item code.
      */
@@ -327,6 +336,7 @@ class SettingsManager
         $instance = self::instance();
 
         $instance->contextOwner = strtolower($owner);
+
         $instance->contextItemCode = strtolower($code);
     }
 

@@ -89,7 +89,7 @@ class TagList extends FormWidgetBase
     }
 
     /**
-     * Prepares the form widget view data
+     * prepareVars for display
      */
     public function prepareVars()
     {

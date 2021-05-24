@@ -13,7 +13,7 @@ use System\Classes\PluginManager;
 use Closure;
 
 /**
- * This is the master controller for all back-end pages.
+ * BackendController is the master controller for all back-end pages.
  * All requests that are prefixed with the backend URI pattern are sent here,
  * then the next URI segments are analysed and the request is routed to the
  * relevant back-end controller.
@@ -200,7 +200,7 @@ class BackendController extends ControllerBase
     protected function parseAction($actionName)
     {
         if (strpos($actionName, '-') !== false) {
-            return camel_case($actionName);
+            return snake_case($actionName);
         }
 
         return $actionName;

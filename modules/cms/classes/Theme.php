@@ -766,7 +766,7 @@ class Theme
     /**
      * getParentOptions returns dropdown options for a parent theme
      */
-    public function getParentOptions()
+    public function getParentOptions(): array
     {
         $result = [
             '' => Lang::get('cms::lang.theme.no_parent'),

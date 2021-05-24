@@ -8,7 +8,6 @@ class DbBackendUserThrottle extends Migration
     public function up()
     {
         Schema::create('backend_user_throttle', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable()->index();
             $table->string('ip_address')->nullable()->index();

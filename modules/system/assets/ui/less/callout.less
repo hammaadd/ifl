@@ -50,7 +50,7 @@
             font-size: 16px;
             position: relative;
         }
-        
+
         &:hover:before {
             color: @brand-danger;
         }
@@ -118,7 +118,7 @@
     }
 
     > .header {
-        padding: 15px 20px 0;
+        padding: 15px 20px 5px;
         .border-radius(4px 4px 0 0);
         color: @color-grey-1;
         border-bottom: 1px solid white;
@@ -220,6 +220,12 @@
         > .content {
             padding-top: 15px;
             .border-radius(4px);
+        }
+    }
+
+    &.no-subheader {
+        > .header {
+            padding-bottom: 10px;
         }
     }
 

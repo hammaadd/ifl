@@ -206,6 +206,9 @@ class PluginManager
         $langPath = $pluginPath . '/lang';
         if (File::isDirectory($langPath)) {
             Lang::addNamespace($pluginNamespace, $langPath);
+            if (App::runningInBackend()) {
+                Lang::addJsonPath($langPath);
+            }
         }
 
         if ($plugin->disabled) {

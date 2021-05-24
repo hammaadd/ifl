@@ -1,0 +1,10 @@
+name: Pdf
+form: $/virtuenetz/pdf/models/pdf/fields.yaml
+modelClass: Virtuenetz\Pdf\Models\Pdf
+defaultRedirect: virtuenetz/pdf/pdf
+create:
+    redirect: 'virtuenetz/pdf/pdf/update/:id'
+    redirectClose: virtuenetz/pdf/pdf
+update:
+    redirect: virtuenetz/pdf/pdf
+    redirectClose: virtuenetz/pdf/pdf

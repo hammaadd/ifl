@@ -310,13 +310,13 @@ class Controller
          * The 'this' variable is reserved for default variables.
          */
         $this->vars['this'] = [
-            'page'        => $this->page,
-            'layout'      => $this->layout,
-            'theme'       => $this->theme,
-            'param'       => $this->router->getParameters(),
-            'controller'  => $this,
+            'page' => $this->page,
+            'layout' => $this->layout,
+            'theme' => $this->theme,
+            'param' => $this->router->getParameters(),
+            'controller' => $this,
             'environment' => App::environment(),
-            'session'     => App::make('session'),
+            'session' => App::make('session')
         ];
 
         /*
@@ -382,13 +382,7 @@ class Controller
         /*
          * Execute postback handler
          */
-        if (
-            $useAjax &&
-            ($handler = post('_handler')) &&
-            $this->verifyCsrfToken() &&
-            ($handlerResponse = $this->runAjaxHandler($handler)) &&
-            $handlerResponse !== true
-        ) {
+        if ($useAjax && $handlerResponse = $this->execPostbackHandler()) {
             return $handlerResponse;
         }
 
@@ -803,6 +797,33 @@ class Controller
     }
 
     /**
+     * execPostbackHandler is used internally to execute a postback version of an
+     * AJAX handler.
+     */
+    protected function execPostbackHandler()
+    {
+        if (Request::method() !== 'POST') {
+            return null;
+        }
+
+        $handler = post('_handler');
+        if (!$handler) {
+            return null;
+        }
+
+        if (!$this->verifyCsrfToken()) {
+            return null;
+        }
+
+        $handlerResponse = $this->runAjaxHandler($handler);
+        if ($handlerResponse && $handlerResponse !== true) {
+            return $handlerResponse;
+        }
+
+        return null;
+    }
+
+    /**
      * runAjaxHandler Tries to find and run an AJAX handler in the page, layout, components and plugins.
      * The method stops as soon as the handler is found. It will return the response from the handler,
      * or true if the handler was found. Returns false otherwise.
@@ -1127,7 +1148,7 @@ class Controller
      * @param array $parameters Parameter variables to pass to the view.
      * @return string
      */
-    public function renderContent($name, $parameters = [])
+    public function renderContent($name, $parameters = [], $throwException = true)
     {
         /**
          * @event cms.page.beforeRenderContent
@@ -1153,7 +1174,11 @@ class Controller
          * Load content from theme
          */
         elseif (($content = Content::loadCached($this->theme, $name)) === null) {
-            throw new CmsException(Lang::get('cms::lang.content.not_found_name', ['name'=>$name]));
+            if ($throwException) {
+                throw new CmsException(Lang::get('cms::lang.content.not_found_name', ['name'=>$name]));
+            }
+
+            return false;
         }
 
         $fileContent = $content->parsedMarkup;

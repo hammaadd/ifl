@@ -8,7 +8,6 @@ class DbCmsThemeTemplates extends Migration
     public function up()
     {
         Schema::create('cms_theme_templates', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('source')->index();
             $table->string('path')->index();

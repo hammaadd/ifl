@@ -7,7 +7,7 @@ use Twig\Sandbox\SecurityNotAllowedMethodError;
 use Twig\Sandbox\SecurityNotAllowedPropertyError;
 
 /**
- * SecurityPolicy globally blocks accessibility of certain methods and properties.
+ * SecurityPolicy globally blocks accessibility of certain methods and properties
  *
  * @package october\system
  * @author Alexey Bobkov, Samuel Georges
@@ -15,14 +15,17 @@ use Twig\Sandbox\SecurityNotAllowedPropertyError;
 final class SecurityPolicy implements SecurityPolicyInterface
 {
     /**
-     * blockedProperties is a list of forbidden properties.
+     * @var array blockedProperties is a list of forbidden properties.
      */
     protected $blockedProperties = [];
 
     /**
-     * blockedMethods is a list of forbidden methods.
+     * @var array blockedMethods is a list of forbidden methods.
      */
     protected $blockedMethods = [
+        // Prevent manipulating Twig itself
+        'getTwig',
+
         // Prevent dynamic methods and props
         'addDynamicMethod',
         'addDynamicProperty',
@@ -31,14 +34,16 @@ final class SecurityPolicy implements SecurityPolicyInterface
         'bindEvent',
         'bindEventOnce',
 
-        // Prevent updating models
+        // General bans
         'insert',
         'update',
         'delete',
+        'save',
+        'write',
     ];
 
     /**
-     * Constructor
+     * __construct
      */
     public function __construct()
     {
@@ -46,7 +51,7 @@ final class SecurityPolicy implements SecurityPolicyInterface
     }
 
     /**
-     * setBlockedMethods sets the defined blocked methods as lower case.
+     * setBlockedMethods sets the defined blocked methods as lower case
      */
     public function setBlockedMethods(array $methods): void
     {
@@ -56,6 +61,7 @@ final class SecurityPolicy implements SecurityPolicyInterface
     }
 
     /**
+     * checkSecurity
      * @throws SecurityError
      */
     public function checkSecurity($tags, $filters, $functions)
@@ -63,6 +69,7 @@ final class SecurityPolicy implements SecurityPolicyInterface
     }
 
     /**
+     * checkMethodAllowed
      * @throws SecurityNotAllowedMethodError
      */
     public function checkMethodAllowed($obj, $method)
@@ -80,6 +87,7 @@ final class SecurityPolicy implements SecurityPolicyInterface
     }
 
     /**
+     * checkPropertyAllowed
      * @throws SecurityNotAllowedPropertyError
      */
     public function checkPropertyAllowed($obj, $property)

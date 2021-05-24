@@ -182,9 +182,11 @@ class Form extends WidgetBase
         if (isset($options['preview'])) {
             $this->previewMode = $options['preview'];
         }
+
         if (!isset($options['useContainer'])) {
             $options['useContainer'] = true;
         }
+
         if (!isset($options['section'])) {
             $options['section'] = null;
         }
@@ -209,7 +211,7 @@ class Form extends WidgetBase
         /*
          * Apply a container to the element
          */
-        if ($useContainer = $options['useContainer']) {
+        if ($options['useContainer']) {
             $targetPartial = $section ? 'section-container' : 'form-container';
         }
 
@@ -1132,7 +1134,7 @@ class Form extends WidgetBase
      */
     protected function showFieldLabels($field)
     {
-        if (in_array($field->type, ['checkbox', 'switch', 'section'])) {
+        if (in_array($field->type, ['checkbox', 'switch', 'section', 'hint'])) {
             return false;
         }
 

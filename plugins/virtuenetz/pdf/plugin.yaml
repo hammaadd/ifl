@@ -1,0 +1,11 @@
+plugin:
+    name: 'virtuenetz.pdf::lang.plugin.name'
+    description: 'PDF plugin developed by VirtueNetz. This plugin will help you show reports, notices and other pdf files'
+    author: VirtueNetz
+    icon: oc-icon-file-pdf-o
+    homepage: 'https://virtuenetz.com'
+navigation:
+    main-menu-item:
+        label: 'Pdf Files'
+        url: virtuenetz/pdf/pdf
+        icon: icon-file-pdf-o

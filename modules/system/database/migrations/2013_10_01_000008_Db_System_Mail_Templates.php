@@ -8,7 +8,6 @@ class DbSystemMailTemplates extends Migration
     public function up()
     {
         Schema::create('system_mail_templates', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('code')->nullable();
             $table->string('subject')->nullable();

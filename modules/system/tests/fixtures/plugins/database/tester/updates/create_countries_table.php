@@ -8,7 +8,6 @@ class CreateCountriesTable extends Migration
     public function up()
     {
         Schema::create('database_tester_countries', function ($table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->nullable();
             $table->softDeletes();

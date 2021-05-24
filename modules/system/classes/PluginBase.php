@@ -1,6 +1,5 @@
 <?php namespace System\Classes;
 
-use App;
 use Yaml;
 use Backend;
 use Illuminate\Support\ServiceProvider as ServiceProviderBase;
@@ -8,7 +7,7 @@ use SystemException;
 use ReflectionClass;
 
 /**
- * Plugin base class
+ * PluginBase class
  *
  * @package october\system
  * @author Alexey Bobkov, Samuel Georges
@@ -40,9 +39,12 @@ class PluginBase extends ServiceProviderBase
     {
         $thisClass = get_class($this);
 
-        $configuration = $this->getConfigurationFromYaml(sprintf('Plugin configuration file plugin.yaml is not '.
+        $configuration = $this->getConfigurationFromYaml(sprintf(
+            'Plugin configuration file plugin.yaml is not '.
             'found for the plugin class %s. Create the file or override pluginDetails() '.
-            'method in the plugin class.', $thisClass));
+            'method in the plugin class.',
+            $thisClass
+        ));
 
         if (!array_key_exists('plugin', $configuration)) {
             throw new SystemException(sprintf(
@@ -100,19 +102,22 @@ class PluginBase extends ServiceProviderBase
     public function registerNavigation()
     {
         $configuration = $this->getConfigurationFromYaml();
-        if (array_key_exists('navigation', $configuration)) {
-            $navigation = $configuration['navigation'];
-
-            if (is_array($navigation)) {
-                array_walk_recursive($navigation, function (&$item, $key) {
-                    if ($key === 'url') {
-                        $item = Backend::url($item);
-                    }
-                });
-            }
-
-            return $navigation;
+        if (!array_key_exists('navigation', $configuration)) {
+            return;
         }
+
+        $navigation = $configuration['navigation'];
+        if (!is_array($navigation)) {
+            return;
+        }
+
+        array_walk_recursive($navigation, function (&$item, $key) {
+            if ($key === 'url') {
+                $item = Backend::url($item);
+            }
+        });
+
+        return $navigation;
     }
 
     /**
@@ -123,9 +128,11 @@ class PluginBase extends ServiceProviderBase
     public function registerPermissions()
     {
         $configuration = $this->getConfigurationFromYaml();
-        if (array_key_exists('permissions', $configuration)) {
-            return $configuration['permissions'];
+        if (!array_key_exists('permissions', $configuration)) {
+            return;
         }
+
+        return $configuration['permissions'];
     }
 
     /**
@@ -136,9 +143,22 @@ class PluginBase extends ServiceProviderBase
     public function registerSettings()
     {
         $configuration = $this->getConfigurationFromYaml();
-        if (array_key_exists('settings', $configuration)) {
-            return $configuration['settings'];
+        if (!array_key_exists('settings', $configuration)) {
+            return;
         }
+
+        $settings = $configuration['settings'];
+        if (!is_array($settings)) {
+            return;
+        }
+
+        array_walk_recursive($settings, function (&$item, $key) {
+            if ($key === 'url') {
+                $item = Backend::url($item);
+            }
+        });
+
+        return $settings;
     }
 
     /**

@@ -253,8 +253,7 @@ class RelationController extends ControllerBehavior
     }
 
     /**
-     * Prepares the view data.
-     * @return void
+     * prepareVars for display
      */
     public function prepareVars()
     {
@@ -1088,6 +1087,7 @@ class RelationController extends ControllerBehavior
         $this->beforeAjax();
         $saveData = $this->manageWidget->getSaveData();
         $sessionKey = $this->deferredBinding ? $this->relationGetSessionKey(true) : null;
+        $parentModel = $this->relationObject->getParent();
 
         if ($this->viewMode == 'multi') {
             $newModel = $this->relationModel;
@@ -1097,7 +1097,7 @@ class RelationController extends ControllerBehavior
              * to pass any constraints imposed by the database. This emulates
              * the "create" method on the relation object.
              */
-            $isSavable = in_array($this->relationType, ['hasOne', 'hasMany']);
+            $isSavable = $parentModel->exists && in_array($this->relationType, ['hasOne', 'hasMany']);
             if ($isSavable) {
                 $newModel->setAttribute(
                     $this->relationObject->getForeignKeyName(),
@@ -1132,11 +1132,12 @@ class RelationController extends ControllerBehavior
              * Belongs to relations won't save when using add() so
              * it should occur if the conditions are right.
              */
-            if (!$this->deferredBinding && $this->relationType == 'belongsTo') {
-                $parentModel = $this->relationObject->getParent();
-                if ($parentModel->exists) {
-                    $parentModel->save();
-                }
+            if (
+                !$this->deferredBinding &&
+                $this->relationType == 'belongsTo' &&
+                $parentModel->exists
+            ) {
+                $parentModel->save();
             }
         }
 

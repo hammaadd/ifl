@@ -9,7 +9,6 @@ class CreateEventLogTable extends Migration
     public function up()
     {
         Schema::create('database_tester_event_log', function ($table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('action', 30)->nullable();
             $table->string('related_id')->index()->nullable();

@@ -1,13 +1,12 @@
 <?php namespace Backend\FormWidgets;
 
+use Backend\Classes\FormWidgetBase;
 use BackendAuth;
 use Markdown;
 use Request;
-use Backend\Classes\FormWidgetBase;
 
 /**
- * Code Editor
- * Renders a code editor field.
+ * MarkdownEditor renders a markdown editor field.
  *
  * @package october\backend
  * @author Alexey Bobkov, Samuel Georges
@@ -66,7 +65,7 @@ class MarkdownEditor extends FormWidgetBase
     }
 
     /**
-     * Prepares the widget data
+     * prepareVars for display
      */
     public function prepareVars()
     {

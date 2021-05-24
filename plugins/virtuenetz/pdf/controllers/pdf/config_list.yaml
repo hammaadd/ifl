@@ -1,0 +1,12 @@
+list: $/virtuenetz/pdf/models/pdf/columns.yaml
+modelClass: Virtuenetz\Pdf\Models\Pdf
+title: Pdf
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'virtuenetz/pdf/pdf/update/:id'

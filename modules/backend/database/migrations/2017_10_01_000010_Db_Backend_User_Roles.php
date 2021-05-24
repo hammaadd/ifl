@@ -9,7 +9,6 @@ class DbBackendUserRoles extends Migration
     public function up()
     {
         Schema::create('backend_user_roles', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->unique('role_unique');
             $table->string('code')->nullable()->index('role_code_index');
