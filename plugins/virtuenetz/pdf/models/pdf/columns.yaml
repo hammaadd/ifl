@@ -13,6 +13,6 @@ columns:
         type: datetime
         sortable: true
     updated_at:
-        label: 'Update At'
+        label: 'Updated at'
         type: datetime
         sortable: true

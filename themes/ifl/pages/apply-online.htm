@@ -1,0 +1,54 @@
+url = "/apply-online"
+layout = "main"
+title = "Apply Online"
+==
+{% put extralinks %}
+<!-- Flipbook StyleSheet -->
+<link rel="stylesheet" href="{{ 'assets/pdf/css/dflip.css' | theme }}">
+<link rel="stylesheet" href="{{ 'assets/pdf/css/themify-icons.css' | theme }}">
+
+<!-- Flipbook JS -->
+<script src="{{ 'assets/pdf/js/dflip.js' | theme }}"></script>
+<script src="{{ 'assets/pdf/js/pdf.js' | theme }}"></script>
+{% endput %}
+
+<section class="page-title-wrapper p-0">
+	<div class="container-fluid px-0">
+		<div class="row g-0">
+			<div class="col-md-12">
+				<div class="h-100 w-100 page-title-wrap bg-4 d-flex align-items-center justify-content-end">
+					<div class="page-title-wrap-inner full text-center position-relative">
+						<h1 class="page-title">{{ this.page.title }}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<main class="main management">
+	<section class="m-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="aux-widget-modern-heading">
+						<div class="aux-widget-inner text-center">
+							<h3 class="aux-modern-heading-secondary fw-bold">
+								<span class="aux-head-highlight">Welcome to IFL iRecruitment Portal.</span>
+							</h3>
+							<div class="aux-modern-button-wrapper aux-modern-button-align-center mb-4">
+								<a href="http://iflapps.igcpk.com:8005/OA_HTML/IrcVisitor.jsp" target="_blank" class="aux-modern-button bg-blue border-blue text-decoration-none m-2">Open Vacancies</a>
+								<a href="#" source="http://127.0.0.1:8000/storage/app/media/annually-reports/HRMS_IREC_HOW-TO-APPLY.pdf" class="_df_button aux-modern-button bg-blue border-blue text-decoration-none m-2" id="df_apply_button">How to Apply</a>
+							</div>
+							<div class="aux-modern-heading-description fst-normal">
+								<div class="alert alert-info d-inline-block align-middle mb-0">
+									<p class="mb-0">Note: You can also drop your CV at <a href="mailto:hr@igcpk.com">hr@igcpk.com</a></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

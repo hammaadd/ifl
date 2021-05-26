@@ -1,0 +1,43 @@
+title = "Business Reports"
+url = "/business-reports"
+layout = "main"
+==
+{% put extralinks %}
+<!-- Flipbook StyleSheet -->
+<link rel="stylesheet" href="{{ 'assets/pdf/css/dflip.css' | theme }}">
+<link rel="stylesheet" href="{{ 'assets/pdf/css/themify-icons.css' | theme }}">
+
+<!-- Flipbook JS -->
+<script src="{{ 'assets/pdf/js/dflip.js' | theme }}"></script>
+<script src="{{ 'assets/pdf/js/pdf.js' | theme }}"></script>
+{% endput %}
+
+<section class="page-title-wrapper p-0">
+	<div class="container-fluid px-0">
+		<div class="row g-0">
+			<div class="col-md-12">
+				<div class="h-100 w-100 page-title-wrap bg-4 d-flex align-items-center justify-content-end">
+					<div class="page-title-wrap-inner full text-center position-relative">
+						<h1 class="page-title">{{ this.page.title }}</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<main class="main management">
+	<section class="m-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="_df_thumb"
+						source="http://127.0.0.1:8000/storage/app/media/annually-reports/web-site-req-1.pdf"
+						id="df_2533"
+						thumb="http://127.0.0.1:8000/storage/app/media/annually-reports/IFL-3rd-Quarter-report-2021-1.jpg">
+						Quarterly Report 2021</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>
