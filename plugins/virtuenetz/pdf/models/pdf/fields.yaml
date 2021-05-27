@@ -9,7 +9,12 @@ fields:
         span: auto
         type: mediafinder
     description:
-        label: 'Text area'
+        label: Description
         size: small
-        span: full
+        span: left
         type: textarea
+    thumb:
+        label: Thumbnail
+        mode: file
+        span: right
+        type: mediafinder
