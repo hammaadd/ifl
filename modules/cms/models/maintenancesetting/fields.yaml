@@ -5,7 +5,8 @@
 fields:
 
     hint:
-        type: tip
+        type: hint
+        mode: tip
         label: cms::lang.maintenance.hint
 
     is_enabled:
