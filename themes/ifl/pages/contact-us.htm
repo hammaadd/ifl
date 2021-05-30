@@ -2,6 +2,8 @@ url = "/contact-us"
 layout = "main"
 title = "Contact Us"
 description = "Contact Us | Ibrahim Fibres Limited"
+
+[contactForm]
 ==
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" enable-background="new 0 0 100 100" xml:space="preserve" style="display: none;">
 		<defs>
@@ -217,7 +219,18 @@ description = "Contact Us | Ibrahim Fibres Limited"
 						<div class="c-form-wrapper">
 							<h2>Get In Touch!</h2>
 							<div class="c-from-wrap">
-								<form action="#">
+							<div id="scf-{{ contactForm }}">
+       
+					       	<div id="scf-message-{{ contactForm }}">
+					       		{% partial contactForm ~ '::scf-message' %}
+					       	</div>
+					       
+					       	<div id="scf-form-{{ contactForm }}">
+					       		{% partial contactForm ~ '::scf-form' %}
+					       	</div>
+					       
+					       </div>
+								{# <form action="#">
 									<div class="mb-3">
 										<label for="fname" class="form-label">Full Name</label>
 										<input type="text" class="form-control" id="fname" required placeholder="Enter your name*">
@@ -237,7 +250,7 @@ description = "Contact Us | Ibrahim Fibres Limited"
 									<div class="text-center text-md-start">
 										<button type="submit" class="btn btn-submit">Send</button>
 									</div>
-								</form>
+								</form> #}
 							</div>
 						</div>
 					</div>

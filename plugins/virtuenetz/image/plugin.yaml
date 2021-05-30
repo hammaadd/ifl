@@ -1,0 +1,20 @@
+plugin:
+    name: 'virtuenetz.image::lang.plugin.name'
+    description: 'virtuenetz.image::lang.plugin.description'
+    author: VirtueNetz
+    icon: oc-icon-image
+    homepage: 'https://virtuenetz.com'
+navigation:
+    main-menu-item:
+        label: 'Image files'
+        url: /
+        icon: icon-image
+        sideMenu:
+            side-menu-item:
+                label: Image
+                url: virtuenetz/image/image
+                icon: icon-image
+            side-menu-item2:
+                label: Category
+                url: virtuenetz/image/category
+                icon: icon-list

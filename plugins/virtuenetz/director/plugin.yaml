@@ -1,0 +1,11 @@
+plugin:
+    name: 'virtuenetz.director::lang.plugin.name'
+    description: 'virtuenetz.director::lang.plugin.description'
+    author: VirtueNetz
+    icon: oc-icon-user
+    homepage: 'https://virtuenetz.com'
+navigation:
+    main-menu-item:
+        label: Director
+        url: virtuenetz/director/directors
+        icon: icon-user

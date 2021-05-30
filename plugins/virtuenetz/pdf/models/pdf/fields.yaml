@@ -18,3 +18,9 @@ fields:
         mode: file
         span: right
         type: mediafinder
+    categories:
+        label: Categories
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

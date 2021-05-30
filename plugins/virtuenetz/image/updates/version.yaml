@@ -1,0 +1,11 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table virtuenetz_image_image'
+    - builder_table_create_virtuenetz_image_image.php
+1.0.3:
+    - 'Created table virtuenetz_image_categories'
+    - builder_table_create_virtuenetz_image_categories.php
+1.0.4:
+    - 'Created table virtuenetz_image_'
+    - builder_table_create_virtuenetz_image_.php

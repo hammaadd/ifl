@@ -9,3 +9,12 @@ navigation:
         label: 'Pdf Files'
         url: virtuenetz/pdf/pdf
         icon: icon-file-pdf-o
+        sideMenu:
+            side-menu-item2:
+                label: 'Pdf''s'
+                url: virtuenetz/pdf/pdf
+                icon: icon-file-pdf-o
+            side-menu-item:
+                label: Category
+                url: virtuenetz/pdf/categories
+                icon: icon-list

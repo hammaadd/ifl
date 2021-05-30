@@ -1,0 +1,12 @@
+list: $/virtuenetz/director/models/director/columns.yaml
+modelClass: Virtuenetz\Director\Models\Director
+title: Directors
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+recordsPerPage: 20
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
+recordUrl: 'virtuenetz/director/directors/update/:id'

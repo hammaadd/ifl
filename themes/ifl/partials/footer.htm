@@ -23,23 +23,23 @@
 								<li class="menu-item">
 									<a href="/about-us/">About Us</a>
 								</li>
-								<li class="menu-item">
-									<a href="/company-profile/">Company Profile</a>
+								<li class="menu-item {% if this.page.id == 'company-profile' %} active {% endif %}">
+									<a href="{{ url('/company-profile') }}">Company Profile</a>
 								</li>
-								<li class="menu-item">
-									<a href="/ibrahim-group-timelines/">Ibrahim Group Timelines</a>
+								<li class="menu-item {% if this.page.id == 'ibrahim-group-timelines' %} active {% endif %}">
+									<a href="{{ url('/ibrahim-group-timelines') }}">Ibrahim Group Timelines</a>
 								</li>
-								<li class="menu-item">
-									<a href="/vision-mission-core-values/">Vision, Mission &amp; Core Values</a>
+								<li class="menu-item {% if this.page.id == 'vision-mission-core-values' %} active {% endif %}">
+									<a href="{{ url('/vision-mission-core-values') }}">Vision, Mission &amp; Core Values</a>
 								</li>
-								<li class="menu-item">
-									<a href="/management-philosophy/">Management Philosophy</a>
+								<li class="menu-item {% if this.page.id == 'management-philosophy' %} active {% endif %}">
+									<a href="{{ url('/management-philosophy') }}">Management Philosophy</a>
 								</li>
-								<li class="menu-item">
-									<a href="/permissible-business-activities/">Permissible Business Activities</a>
+								<li class="menu-item {% if this.page.id == 'permissible-business-activities' %} active {% endif %}">
+									<a href="{{ url('/permissible-business-activities') }}">Permissible Business Activities</a>
 								</li>
-								<li class="menu-item">
-									<a href="/ibrahim-holdings-pvt-limited/">Ibrahim Holdings (Pvt) Limited</a>
+								<li class="menu-item {% if this.page.id == 'ibrahim-holdings-pvt-limited' %} active {% endif %}">
+									<a href="{{ url('/ibrahim-holdings-pvt-limited') }}">Ibrahim Holdings (Pvt) Limited</a>
 								</li>
 							</ul>
 						</div>
@@ -49,14 +49,14 @@
 						<div class="footer-menu-wrap mb-4 mb-lg-0">
 							<h5 class="widget-title">Governance</h5>
 							<ul class="list-unstyled footer-menu mb-0">
-								<li class="menu-item">
-									<a href="/board-of-directors/">Board Of Directors</a>
+								<li class="menu-item {% if this.page.id == 'board-of-directors' %} active {% endif %}">
+									<a href="{{ url('/board-of-directors') }}">Board Of Directors</a>
 								</li>
-								<li class="menu-item">
-									<a href="/shareholding-pattern/">Shareholding Pattern</a>
+								<li class="menu-item {% if this.page.id == 'shareholding-pattern' %} active {% endif %}">
+									<a href="{{ url('/shareholding-pattern') }}">Shareholding Pattern</a>
 								</li>
-								<li class="menu-item">
-									<a href="/companys-advisor-auditor/">Company’s Advisor &amp; Auditor</a>
+								<li class="menu-item {% if this.page.id == 'companys-advisor-auditor' %} active {% endif %}">
+									<a href="{{ url('/companys-advisor-auditor') }}">Company’s Advisor &amp; Auditor</a>
 								</li>
 							</ul>
 						</div>
@@ -65,14 +65,14 @@
 						<div class="footer-menu-wrap mb-4 mb-lg-0">
 							<h5 class="widget-title">Media Room</h5>
 							<ul class="list-unstyled footer-menu mb-0">
-								<li class="menu-item">
-									<a href="/membership-information/">Membership Information</a>
+								<li class="menu-item {% if this.page.id == 'membership-information' %} active {% endif %}">
+									<a href="{{ url('/membership-information') }}">Membership Information</a>
 								</li>
-								<li class="menu-item">
-									<a href="/certifications/">Certifications</a>
+								<li class="menu-item {% if this.page.id == 'certifications' %} active {% endif %}">
+									<a href="{{ url('/certifications') }}">Certifications</a>
 								</li>
-								<li class="menu-item">
-									<a href="/announcements/">Announcements</a>
+								<li class="menu-item {% if this.page.id == 'announcements' %} active {% endif %}">
+									<a href="{{ url('/announcements') }}">Announcements</a>
 								</li>
 							</ul>
 						</div>

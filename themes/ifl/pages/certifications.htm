@@ -1,6 +1,21 @@
-title = "Certifications"
 url = "/certifications"
 layout = "main"
+title = "Certifications"
+description = "Certifications"
+
+[builderDetails]
+modelClass = "Virtuenetz\Pdf\Models\Category"
+identifierValue = "quality-policy"
+modelKeyColumn = "slug"
+displayColumn = "name"
+notFoundMessage = "Record not found"
+
+[builderDetails builderDetails2]
+modelClass = "Virtuenetz\Pdf\Models\Category"
+identifierValue = "iso-certification"
+modelKeyColumn = "slug"
+displayColumn = "name"
+notFoundMessage = "Record not found"
 ==
 {% put extralinks %}
 <link rel="stylesheet" href="{{ 'assets/lightbox/css/photoswipe.css' | theme }}">
@@ -29,6 +44,13 @@ layout = "main"
 	</div>
 </section>
 
+{% set record = builderDetails.record %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% set record2 = builderDetails2.record %}
+{% set notFoundMessage2 = builderDetails2.notFoundMessage %}
+
+
 <main class="main">
 	<section class="m-section">
 		<div class="container">
@@ -43,17 +65,18 @@ layout = "main"
 			</div>
 			<div class="row g-0">
 				<div class="col-md-12">
-					<div class="_df_thumb"
-						source="http://127.0.0.1:8000/storage/app/media/annually-reports/web-site-req-1.pdf"
+					{% if record %}
+					{% for pdf in record.pdfs %}
+						
+						<div class="_df_thumb"
+						source="{{pdf.file | media}}"
 						id="df_2533"
-						thumb="http://127.0.0.1:8000/storage/app/media/annually-reports/IFL-3rd-Quarter-report-2021-1.jpg">
-						Quarterly Report 2021</div>
-					<div class="_df_thumb"
-						source="http://127.0.0.1:8000/storage/app/media/annually-reports/web-site-req-1.pdf"
-						id="df_2533"
-						thumb="http://127.0.0.1:8000/storage/app/media/annually-reports/IFL-3rd-Quarter-report-2021-1.jpg">
-						Quarterly Report 2021</div>
-				</div>
+						thumb="{{ pdf.thumb | media }}">
+						{{ pdf.title }}</div>
+					{% endfor %}
+				{% else %}
+				    {{ notFoundMessage }}
+				{% endif %}
 			</div>
 		</div>
 	</section>
@@ -71,11 +94,18 @@ layout = "main"
 			</div>
 			<div class="row g-0">
 				<div class="col-md-12">
-					<div class="_df_thumb"
-						source="http://127.0.0.1:8000/storage/app/media/annually-reports/web-site-req-1.pdf"
+					{% if record2 %}
+					{% for pdf in record2.pdfs %}
+						
+						<div class="_df_thumb"
+						source="{{pdf.file | media}}"
 						id="df_2533"
-						thumb="http://127.0.0.1:8000/storage/app/media/annually-reports/IFL-3rd-Quarter-report-2021-1.jpg">
-						Quarterly Report 2021</div>
+						thumb="{{ pdf.thumb | media }}">
+						{{ pdf.title }}</div>
+					{% endfor %}
+				{% else %}
+				    {{ notFoundMessage }}
+				{% endif %}
 				</div>
 			</div>
 		</div>

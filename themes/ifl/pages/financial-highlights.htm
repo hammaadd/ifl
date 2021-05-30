@@ -1,6 +1,13 @@
-title = "Financial Highlights"
 url = "/financial-highlights"
 layout = "main"
+title = "Financial Highlights"
+
+[builderDetails]
+modelClass = "Virtuenetz\Image\Models\Category"
+identifierValue = "financial-highlights"
+modelKeyColumn = "slug"
+displayColumn = "slug"
+notFoundMessage = "Record not found"
 ==
 {% put extralinks %}
 <!-- Flipbook StyleSheet -->
@@ -26,6 +33,10 @@ layout = "main"
 	</div>
 </section>
 
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
 <main class="main">
 	
 	<section class="c-offices">
@@ -35,16 +46,22 @@ layout = "main"
 
 					<div class="igcpk-gallery" itemscope itemtype="//schema.org/ImageGallery">
 						<div class="row">
+						{% if record %}
+						{% for image in record.images %}
 							<figure class="col-sm-6" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-								<a href="{{ 'assets/images/Financial-Highlights-2020.jpg' | theme }}" itemprop="contentUrl" data-size="691x1024">
-									<img src="{{ 'assets/images/Financial-Highlights-2020.jpg' | theme }}" itemprop="thumbnail" alt="">
+								<a href="{{ image.image | media }}" itemprop="contentUrl" data-size="691x1024">
+									<img src="{{ image.image | media }}" itemprop="thumbnail" alt="">
 								</a>
 							</figure>
-							<figure class="col-sm-6" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+						{% endfor %}
+						{% else %}
+						    {{ notFoundMessage }}
+						{% endif %}
+							{# <figure class="col-sm-6" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
 								<a href="{{ 'assets/images/Financial-Highlights-2020-2.jpg' | theme }}" itemprop="contentUrl" data-size="803x1024">
 									<img src="{{ 'assets/images/Financial-Highlights-2020-2.jpg' | theme }}" itemprop="thumbnail" alt="">
 								</a>
-							</figure>
+							</figure> #}
 						</div>
 					</div>
 

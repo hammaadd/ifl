@@ -1,0 +1,10 @@
+name: Categories
+form: $/virtuenetz/pdf/models/category/fields.yaml
+modelClass: Virtuenetz\Pdf\Models\Category
+defaultRedirect: virtuenetz/pdf/categories
+create:
+    redirect: 'virtuenetz/pdf/categories/update/:id'
+    redirectClose: virtuenetz/pdf/categories
+update:
+    redirect: virtuenetz/pdf/categories
+    redirectClose: virtuenetz/pdf/categories

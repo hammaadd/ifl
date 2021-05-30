@@ -1,0 +1,10 @@
+name: Image
+form: $/virtuenetz/image/models/image/fields.yaml
+modelClass: Virtuenetz\Image\Models\Image
+defaultRedirect: virtuenetz/image/image
+create:
+    redirect: 'virtuenetz/image/image/update/:id'
+    redirectClose: virtuenetz/image/image
+update:
+    redirect: virtuenetz/image/image
+    redirectClose: virtuenetz/image/image

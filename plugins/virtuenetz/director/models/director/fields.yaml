@@ -1,0 +1,33 @@
+fields:
+    name:
+        label: Name
+        span: left
+        required: 1
+        type: text
+        comment: 'Name of the person'
+    designation:
+        label: Designation
+        span: right
+        required: 1
+        type: text
+    address:
+        label: Address
+        size: small
+        span: auto
+        type: textarea
+    details:
+        label: Details
+        size: large
+        span: auto
+        type: textarea
+    avatar:
+        label: Avatar
+        mode: image
+        span: auto
+        type: mediafinder
+    order:
+        label: Order
+        span: auto
+        default: '1'
+        type: number
+        comment: 'Order of the profile in which you wish to display in front'

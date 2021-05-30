@@ -1,9 +1,10 @@
+[extendedLocalePicker]
+==
 <!DOCTYPE html>
 <html>
 <head>
 	{% partial "meta" %}
 	<title>{{this.page.description}}</title>
-
 	{% partial 'head_links' %}
     {% placeholder extralinks %}
 </head>
@@ -11,5 +12,10 @@
 {% partial "header" %}
 {% page %}
 {% partial "footer" %}
+{% put locale %}
+{% for code, name in locales %}
+    <a href="{{''|app}}{{ '/' ~ code ~ localeLinks[code] }}">{{ name }}</a>
+{% endfor %}
+{% endput %}
 </body>
 </html>

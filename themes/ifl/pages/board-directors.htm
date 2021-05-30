@@ -1,6 +1,19 @@
 url = "/board-of-directors"
 layout = "main"
 title = "Board Of Directors"
+description = "Board Of Directors"
+
+[builderList]
+modelClass = "Virtuenetz\Director\Models\Director"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+sortColumn = "order"
+sortDirection = "asc"
 ==
 <section class="page-title-wrapper p-0">
 	<div class="container-fluid px-0">
@@ -27,148 +40,66 @@ title = "Board Of Directors"
 			</div>
 		</div>
 
+
 		<div class="container-fluid p-0">
 			<div class="row g-0 justify-content-center team-wrap">
+
+{% set records = builderList.records %}
+{% set displayColumn = builderList.displayColumn %}
+{% set noRecordsMessage = builderList.noRecordsMessage %}
+{% set detailsPage = builderList.detailsPage %}
+{% set detailsKeyColumn = builderList.detailsKeyColumn %}
+{% set detailsUrlParameter = builderList.detailsUrlParameter %}
+
+			{% for director in records %}
+			{% spaceless %}
 				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
+					<div class="single-team-box {% if director.avatar == null %} no-avatar {% endif %}">
+						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam{{ director.id }}">
 							<div class="team-avatar">
-								<img src="{{ 'assets/images/Sheikh-Mukhtar-Ahmad@2x.jpg' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Sheikh Mukhtar Ahmad</h3>
-										<span>Chairman</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
-								<img src="{{ 'assets/images/Mohammad-Naeem-Mukhtar@2x.jpg' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Mohammad Naeem Mukhtar</h3>
-										<span>Chief Executive Officer</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
-								<img src="{{ 'assets/images/Muhammad-Waseem-Mukhtar@2x.jpg' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Muhammad Waseem Mukhtar</h3>
-										<span>Director</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box no-avatar">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
+							{% if director.avatar == null %}
 								<img src="{{ 'assets/images/thumbnail@2x.png' | theme }}" alt="">
+							{% else %}
+								<img src="{{ director.avatar | media }}" alt="">
+							{% endif %}
 							</div>
 							<div class="team-hover">
 								<div class="d-flex justify-content-center h-100 w-100">
 									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Saba Muhammd</h3>
-										<span>Director</span>
+										<h3 class="team-mmb-name">{{  director.name }}</h3>
+										<span>{{ director.designation }}</span>
 									</div>
 								</div>
 							</div>
 						</a>
 					</div>
 				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box no-avatar">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
-								<img src="{{ 'assets/images/thumbnail@2x.png' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Mohammad Naeem Asghar</h3>
-										<span>Director</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box no-avatar">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
-								<img src="{{ 'assets/images/thumbnail@2x.png' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Abdul Hameed Bhutta</h3>
-										<span>Director</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<div class="single-team-box no-avatar">
-						<a href="javascript:;" data-bs-toggle="modal" data-bs-target="#modalTeam">
-							<div class="team-avatar">
-								<img src="{{ 'assets/images/thumbnail@2x.png' | theme }}" alt="">
-							</div>
-							<div class="team-hover">
-								<div class="d-flex justify-content-center h-100 w-100">
-									<div class="personal-info align-self-center">
-										<h3 class="team-mmb-name">Ikram Ul Haq Mian</h3>
-										<span>Director</span>
-									</div>
-								</div>
-							</div>
-						</a>
-					</div>
-				</div>
+			{% endspaceless %}
+			{% endfor %}
 			</div>
 		</div>
 	</section>
 
 	<!-- Modal -->
-	<div class="modal fade" id="modalTeam" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+
+	{% for director in records %}
+	<div class="modal fade" id="modalTeam{{ director.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered modal-lg">
 			<div class="modal-content">
 				<div class="modal-header align-items-baseline">
 					<div class="modal-title">
-						<h3>Sheikh Mukhtar Ahmad</h3>
-						<h4>Chairman</h4>
+						<h3>{{ director.name }}</h3>
+						<h4>{{ director.designation }}</h4>
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<p><strong>15 – Club Road, Faisalabad.</strong></p>
-					<p>He started his business career immediately after migrating from India at the time of Independence of Pakistan in 1947 and contributed to the industrial and business growth of Pakistan through his entrepreneurship skills and business acumen. He has over 56 years of experience in establishing and successfully managing various industrial and financial companies. Under his auspices, Ibrahim Group has emerged as a leading conglomerate of the country. He has completed Corporate Governance Leadership Skills Program from Pakistan Institute of Corporate Governance and is a “Certified Director”. He joined the Board of Allied Bank in 2005 and is also Chairman/ CEO of Ibrahim Agencies (Pvt) Limited, Chairman of Ibrahim Fibres Limited and ABL Asset Management Company Limited.</p>
+					<p><strong>{{ director.address }}</strong></p>
+					<p>{{ director.details }}</p>
 				</div>
 			</div>
 		</div>
 	</div>
+	{% endfor %}
 
 </main>

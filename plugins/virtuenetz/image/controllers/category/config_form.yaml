@@ -1,0 +1,10 @@
+name: Category
+form: $/virtuenetz/image/models/category/fields.yaml
+modelClass: Virtuenetz\Image\Models\Category
+defaultRedirect: virtuenetz/image/category
+create:
+    redirect: 'virtuenetz/image/category/update/:id'
+    redirectClose: virtuenetz/image/category
+update:
+    redirect: virtuenetz/image/category
+    redirectClose: virtuenetz/image/category

@@ -1,0 +1,10 @@
+name: Directors
+form: $/virtuenetz/director/models/director/fields.yaml
+modelClass: Virtuenetz\Director\Models\Director
+defaultRedirect: virtuenetz/director/directors
+create:
+    redirect: 'virtuenetz/director/directors/update/:id'
+    redirectClose: virtuenetz/director/directors
+update:
+    redirect: virtuenetz/director/directors
+    redirectClose: virtuenetz/director/directors

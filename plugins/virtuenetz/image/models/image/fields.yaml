@@ -1,0 +1,18 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+        comment: 'Add title to show on image'
+    image:
+        label: Image
+        mode: image
+        span: auto
+        required: 1
+        type: mediafinder
+    categories:
+        label: Categories
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

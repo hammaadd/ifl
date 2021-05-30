@@ -9,3 +9,9 @@
 1.0.4:
     - 'Updated table virtuenetz_pdf_pdf'
     - builder_table_update_virtuenetz_pdf_pdf_2.php
+1.0.5:
+    - 'Created table virtuenetz_pdf_categories'
+    - builder_table_create_virtuenetz_pdf_categories.php
+1.0.6:
+    - 'Created table virtuenetz_pdf_'
+    - builder_table_create_virtuenetz_pdf_.php

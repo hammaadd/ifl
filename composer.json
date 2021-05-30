@@ -14,7 +14,9 @@
         "october/media": "^2.0",
         "october/editor": "^2.0",
         "rainlab/builder-plugin": "^1.0",
-        "rainlab/translate-plugin": "^1.8"
+        "rainlab/translate-plugin": "^1.8",
+        "excodus/translateextended-plugin": "^1.0",
+        "janvince/smallcontactform-plugin": "^1.52"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.0|^9.0",

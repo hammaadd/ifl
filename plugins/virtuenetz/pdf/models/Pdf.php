@@ -15,6 +15,15 @@ class Pdf extends Model
      */
     public $table = 'virtuenetz_pdf_pdf';
 
+    public $belongsToMany = [
+        'categories' => [
+            'Virtuenetz\Pdf\Models\Category',
+            'table' => 'virtuenetz_pdf_',
+            'order' => 'name'
+
+        ]
+    ];
+
     /**
      * @var array Validation rules
      */
